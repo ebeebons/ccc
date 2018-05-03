@@ -12,7 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
- 
+
   <div class="container-fluid">
     <div class="row">
         <div class="col-md-2"></div>
@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-2"></div>
     </div>
- 
+
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
@@ -81,7 +81,35 @@
       <div class="col-md-3"></div>
   </div>
 </div>
- 
+
 </body>
+
+// Firebase Sources
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBHt-dtGoAs6akJbKeGdufatEUpnJ8QPa0",
+    authDomain: "my-project-1523381980704.firebaseapp.com",
+    databaseURL: "https://my-project-1523381980704.firebaseio.com",
+    projectId: "my-project-1523381980704",
+    storageBucket: "my-project-1523381980704.appspot.com",
+    messagingSenderId: "88935170519"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  // Get elements
+
+  const preObject = firease.database().ref().child('object');
+
+  // Sync object changes
+
+  dbRefObject.on('value', snap => console.log(snap,val()));
+</script>
 </html>
- 
