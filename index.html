@@ -97,8 +97,8 @@ function filterTable(event) {
     var trable = document.getElementById("tableB");
     var tr = trable.getElementsByTagName("tr");
     for (var i = 0; i < tr.length; i++) {
-      console.log(tr.textContent);
-        if (tr.textContent.toUpperCase().indexOf(filter) > -1) {
+      //console.log(tr.textContent);
+        if (tr[i].textContent.toUpperCase().indexOf(filter) > -1) {
             tr[i].style.display = "";
         } else {
             tr[i].style.display = "none";
