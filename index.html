@@ -81,7 +81,17 @@
       <div class="col-md-3"></div>
   </div>
 </div>
-</body>
+<div class="row">
+    <div id="org_table">
+        <table id="table">
+            <thead id="tableH">
+                
+            </thead>
+            <tbody id="tableB">
+             
+            </tbody>
+        </table>   
+    </div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 <script type='text/javascript'>
@@ -95,7 +105,25 @@
 
   function showInfo(data, tabletop) {
     alert('Successfully processed!')
-    console.log(data);
+    console.log(data[0]);
+    var tableBody = '';
+var tableHead = '<tr>;'
+
+for (i in data[0]) {
+    tableHead+='<th>'+i+'</th>';
+}
+tableHead+='</tr>';
+for (var k =0; k< data.length; k++){
+    tableBody+='<tr <!--onclick expand--> >';
+    for (var l in data[k]){
+        if (data[k].hasOwnProperty(l)) {
+            tableBody+='<td>'+data[k][l]+'</td>';
+        }
+    }
+    tableBody+='</tr>';
+}
+document.getElementById("tableH").innerHTML = tableHead;
+document.getElementById("tableB").innerHTML = tableBody;
   }
 
   window.addEventListener('DOMContentLoaded', init)
