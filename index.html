@@ -71,28 +71,28 @@
     alert('Successfully processed!')
     console.log(data[0]);
     var tableBody = '';
-var tableHead = '<tr>;'
+    var tableHead = '<tr>;';
 
-var columns = ['muncipality', 'category', 'name',]
+    var columns = ['name', 'category', 'municipality'];
 
-for (var i = 0; i < columns.length; i++) {
-    tableHead+='<th>'+columns[i]+'</th>';
-}
-tableHead.replace('<th>'+i+'</th>','');
-tableHead+='</tr>';
-for (var k =0; k< data.length-1; k++){
-    tableBody+='<tr>';
+    for (var i = 0; i < columns.length; i++) {
+      tableHead+='<th>'+columns[i]+'</th>';
+    }
+    //tableHead.replace('<th>'+i+'</th>','');
+    tableHead+='</tr>';
+    for (var k =0; k< data.length-1; k++){
+      tableBody+='<tr>';
     for(var l = 0; l < columns.length; l++) {
       tableBody+='<td>'+data[k][columns[l]]+'</td>';
     }
     
-    tableBody.replace('<td>'+data[k][l]+'</td>','');
+    //tableBody.replace('<td>'+data[k][l]+'</td>','');
 
     tableBody+='</tr>';
+    }
+    document.getElementById("tableH").innerHTML = tableHead;
+    document.getElementById("tableB").innerHTML = tableBody;
 }
-document.getElementById("tableH").innerHTML = tableHead;
-document.getElementById("tableB").innerHTML = tableBody;
-  }
 
   window.addEventListener('DOMContentLoaded', init)
 
