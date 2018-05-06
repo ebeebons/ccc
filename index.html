@@ -43,10 +43,9 @@
       </div>
       <div class="col-md-3"></div>
   </div>
-</div>
 <div class="row">
     <div id="org_table">
-        <table id="table">
+        <table id="table" class="col-md-8">
             <thead id="tableH">
                 
             </thead>
@@ -55,6 +54,8 @@
             </tbody>
         </table>   
     </div>
+</div>
+</div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 <script type='text/javascript'>
@@ -72,17 +73,21 @@
     var tableBody = '';
 var tableHead = '<tr>;'
 
-for (i in data[0]) {
-    tableHead+='<th>'+i+'</th>';
+var columns = ['muncipality', 'category', 'name',]
+
+for (var i = 0; i < columns.length; i++) {
+    tableHead+='<th>'+columns[i]+'</th>';
 }
+tableHead.replace('<th>'+i+'</th>','');
 tableHead+='</tr>';
-for (var k =0; k< data.length; k++){
+for (var k =0; k< data.length-1; k++){
     tableBody+='<tr>';
-    for (var l in data[k]){
-        if (data[k].hasOwnProperty(l)) {
-            tableBody+='<td>'+data[k][l]+'</td>';
-        }
+    for(var l = 0; l < columns.length; l++) {
+      tableBody+='<td>'+data[k][columns[l]]+'</td>';
     }
+    
+    tableBody.replace('<td>'+data[k][l]+'</td>','');
+
     tableBody+='</tr>';
 }
 document.getElementById("tableH").innerHTML = tableHead;
