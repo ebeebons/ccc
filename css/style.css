@@ -1,0 +1,37 @@
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
+.head-s{
+  background-color: #fff6ee;
+
+}
+
+body {
+  font-family: "Lucida Console", Monospace;
+  font-size: 16px;
+  line-height: 1.5;
+}
+p {
+  font-size: medium;
+  max-width: 650px;
+  margin: 40px auto;
+}
+h3{
+  max-width: 750px;
+  margin: 40px auto;
+  font-size: 115%;
+}
+a {
+  color:#212b31;
+}
+a:hover {
+  color:#212b31;
+}

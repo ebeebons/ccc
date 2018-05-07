@@ -10,18 +10,23 @@
   crossorigin="anonymous"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <title> Campus Community Connections </title>
 </head>
 <body>
 
   <div class="container-fluid">
+    <div class="head-s">
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
           <h1>Campus Community Connections</h1>
           <h2> Explore projects in your community, or request to submit a new one! </h2>
-          <button type="submit" class="btn btn-default">Propose Project</button>
+
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-default">Propose New Project</button>
+        </div>
     </div>
 
     <div class="row">
@@ -29,13 +34,14 @@
       <div class="col-md-8">
         <form>
           <div class="form-group">
-            <label for="searchBar">Search by keyword</label>
+            <label for="searchBar">Filter projects by area, category, or name</label>
             <input id="myInput" type="text" onkeyup="filterTable()" placeholder="Search">
           </div>
         </form>
       </div>
       <div class="col-md-2"></div>
   </div>
+</div>
   <div class="row">
     <div class="col-md-3"></div>
       <div class="col-md-6">
@@ -82,9 +88,9 @@
     tableHead+='</tr>';
     for (var k =0; k< data.length-1; k++){
       tableBody+='<tr>';
-    for(var l = 0; l < columns.length; l++) {
-      tableBody+='<td>'+data[k][columns[l]]+'</td>';
-    }
+      for(var l = 0; l < columns.length; l++) {
+        tableBody+='<td>'+data[k][columns[l]]+'</td>';
+      }
     
     //tableBody.replace('<td>'+data[k][l]+'</td>','');
 
