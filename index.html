@@ -36,11 +36,11 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
-        <button type="button" class="btn btn-dark btn-sm">College Park</button>
-        <button type="button" class="btn btn-dark btn-sm">Hyattsville</button>
-        <button type="button" class="btn btn-dark btn-sm">Riverdale Park</button>
-        <button type="button" class="btn btn-dark btn-sm">University Park</button>
-        <button type="button" class="btn btn-dark btn-sm">Price George's County</button>
+        <input id="CP" type="button" value="College Park" onclick="buttonFilter('College Park');" />
+        <input id="HV" type="button" value="Hyattsville" onclick="buttonFilter('Hyattsville');" />
+        <input id="RP" type="button" value="Riverdale Park" onclick="buttonFilter('Riverdale Park');" />
+        <input id="UP" type="button" value="University Park" onclick="buttonFilter('University Park');" />
+        <input id="PG" type="button" value="Prince George's County" onclick="buttonFilter('Prince George\'s County');" />
         <form>
           <div class="form-group">
 
@@ -65,21 +65,10 @@
             <thead id="tableH">
 
             </thead>
-            <tbody id="tableB1">
+            <tbody id="tableB">
 
             </tbody>
-            <tbody id="tableB2">
-
-            </tbody>
-            <tbody id="tableB3">
-
-            </tbody>
-            <tbody id="tableB4">
-
-            </tbody>
-            <tbody id="tableB5">
-
-            </tbody>
+            
         </table>
     </div>
 </div>
@@ -98,11 +87,7 @@
   function showInfo(data, tabletop) {
     alert('Successfully processed!')
     console.log(data[0]);
-    var tableBody1 = '';
-    var tableBody2 = '';
-    var tableBody3 = '';
-    var tableBody4 = '';
-    var tableBody5 = '';
+    var tableBody = '';
     var tableHead = '<tr>;';
 
     var columns = ['name', 'category', 'municipality'];
@@ -113,53 +98,22 @@
     //tableHead.replace('<th>'+i+'</th>','');
     tableHead+='</tr>';
 
-
     for (var k =0; k< data.length; k++){
-      switch(data[k][columns[2]]){
-        case 'College Park':
-          tableBody1+='<tr>';
-          for(var l = 0; l < columns.length; l++) {
-            tableBody1+='<td>'+data[k][columns[l]]+'</td>';
-          }
-          tableBody1+='</tr>';
-        case 'Hyattsville':
-          tableBody2+='<tr>';
-          for(var l = 0; l < columns.length; l++) {
-            tableBody2+='<td>'+data[k][columns[l]]+'</td>';
-          }
-          tableBody2+='</tr>';
-        case 'University Park':
-          tableBody3+='<tr>';
-          for(var l = 0; l < columns.length; l++) {
-            tableBody3+='<td>'+data[k][columns[l]]+'</td>';
-          }
-          tableBody3+='</tr>';
-        case 'Riverdale Park':
-          tableBody4+='<tr>';
-          for(var l = 0; l < columns.length; l++) {
-            tableBody4+='<td>'+data[k][columns[l]]+'</td>';
-          }
-          tableBody4+='</tr>';
-        case "Prince George's County":
-          tableBody5+='<tr>';
-          for(var l = 0; l < columns.length; l++) {
-            tableBody5+='<td>'+data[k][columns[l]]+'</td>';
-          }
-          tableBody5+='</tr>';
+      tableBody+='<tr>';
+      for(var l = 0; l < columns.length; l++) {
+        tableBody+='<td>'+data[k][columns[l]]+'</td>';
+      }
+      tableBody+='</tr>';
       }
 
 
     //tableBody.replace('<td>'+data[k][l]+'</td>','');
 
 
-    }
+    
 
     document.getElementById("tableH").innerHTML = tableHead;
-    document.getElementById("tableB1").innerHTML = tableBody1;
-    document.getElementById("tableB2").innerHTML = tableBody2;
-    document.getElementById("tableB3").innerHTML = tableBody3;
-    document.getElementById("tableB4").innerHTML = tableBody4;
-    document.getElementById("tableB5").innerHTML = tableBody5;
+    document.getElementById("tableB").innerHTML = tableBody;
 }
 
   window.addEventListener('DOMContentLoaded', init)
@@ -172,6 +126,18 @@ function filterTable(event) {
     for (var i = 0; i < tr.length; i++) {
       //console.log(tr.textContent);
         if (tr[i].textContent.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+function buttonFilter(area) {
+    var trable = document.getElementById("tableB");
+    var tr = trable.getElementsByTagName("tr");
+    for (var i = 0; i < tr.length; i++) {
+      //console.log(tr.textContent);
+        if (tr[i].textContent.indexOf(area) > -1) {
             tr[i].style.display = "";
         } else {
             tr[i].style.display = "none";
