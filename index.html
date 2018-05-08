@@ -95,12 +95,14 @@
     tableHead+='</tr>';
 
     for (var k =0; k< data.length; k++){
-      tableBody+='<tr>';
+      tableBody+='<tr><td>+</td>';
+
       for(var l = 0; l < columns.length; l++) {
         tableBody+='<td>'+data[k][columns[l]]+'</td>';
       }
-      
-      tableBody+='</tr>';
+
+      tableBody+='</tr><tr><td colspan="3"><p>' +data[k]['description']+ '</p></td></tr>';
+
       }
 
 
@@ -141,7 +143,23 @@ function buttonFilter(area) {
         }
     }
 }
-
+$(function() {
+    $("td[colspan=3]").find("p").hide();
+    $("table").click(function(event) {
+        event.stopPropagation();
+        var $target = $(event.target);
+        if ( $target.closest("td").attr("colspan") > 1 ) {
+            $target.slideUp();
+            $target.closest("tr").prev().find("td:first").html("+");
+        } else {
+            $target.closest("tr").next().find("p").slideToggle();
+            if ($target.closest("tr").find("td:first").html() == "+")
+                $target.closest("tr").find("td:first").html("-");
+            else
+                $target.closest("tr").find("td:first").html("+");                
+        }                    
+    });
+});
 document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
 </script>
 </html>
