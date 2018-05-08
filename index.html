@@ -22,10 +22,14 @@
         <div class="col-md-8">
           <h1>Campus Community Connections</h1>
           <h2> Explore projects in your community, or request to submit a new one! </h2>
-
         </div>
         <div class="col-md-2">
           <button type="submit" class="btn btn-default" onclick="location.href = 'https://goo.gl/forms/CGionRn90ootRY4I2';">Propose New Project</button>
+          <a href="https://goo.gl/forms/CGionRn90ootRY4I2"    onclick="document.getElementById('modal1').style.display='block'" target="iframe_modal">Broken Modal</a>
+          <div id="modal1" class="modal">
+            <span onclick="document.getElementById('modal1').style.display='none'; document.getElementById('iframe1').src =''" class="">&times;</span>
+            <iframe id="iframe1" height="1200px" width="800px" src="" name="iframe_modal"></iframe>
+          </div>
         </div>
     </div>
 

@@ -40,3 +40,17 @@ a:hover {
     border: 2px solid black;
     border-radius: 5px;
 }
+
+.modal {
+  z-index:3;
+  display:none;
+  padding-top:50px;
+  position:fixed;
+  left:400px;
+  top:100px;
+  width:800px;
+  height:1000px;
+  overflow:auto;
+  background-color:rgb(0,0,0);
+  background-color:rgba(0,0,0,0.4)
+}
