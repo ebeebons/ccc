@@ -34,6 +34,7 @@
       <div class="col-md-8">
         <form>
           <div class="form-group">
+
             <label for="searchBar">Filter projects by area, category, or name</label>
             <input id="myInput" type="text" onkeyup="filterTable()" placeholder="Search">
           </div>
@@ -55,7 +56,19 @@
             <thead id="tableH">
                 
             </thead>
-            <tbody id="tableB">
+            <tbody id="tableB1">
+             
+            </tbody>
+            <tbody id="tableB2">
+             
+            </tbody>
+            <tbody id="tableB3">
+             
+            </tbody>
+            <tbody id="tableB4">
+             
+            </tbody>
+            <tbody id="tableB5">
              
             </tbody>
         </table>   
@@ -76,7 +89,11 @@
   function showInfo(data, tabletop) {
     alert('Successfully processed!')
     console.log(data[0]);
-    var tableBody = '';
+    var tableBody1 = '';
+    var tableBody2 = '';
+    var tableBody3 = '';
+    var tableBody4 = '';
+    var tableBody5 = '';
     var tableHead = '<tr>;';
 
     var columns = ['name', 'category', 'municipality'];
@@ -86,18 +103,54 @@
     }
     //tableHead.replace('<th>'+i+'</th>','');
     tableHead+='</tr>';
-    for (var k =0; k< data.length-1; k++){
-      tableBody+='<tr>';
-      for(var l = 0; l < columns.length; l++) {
-        tableBody+='<td>'+data[k][columns[l]]+'</td>';
+
+
+    for (var k =0; k< data.length; k++){
+      switch(data[k][columns[2]]){
+        case 'College Park':
+          tableBody1+='<tr>';
+          for(var l = 0; l < columns.length; l++) {
+            tableBody1+='<td>'+data[k][columns[l]]+'</td>';
+          }
+          tableBody1+='</tr>';
+        case 'Hyattsville':
+          tableBody2+='<tr>';
+          for(var l = 0; l < columns.length; l++) {
+            tableBody2+='<td>'+data[k][columns[l]]+'</td>';
+          }
+          tableBody2+='</tr>';
+        case 'University Park':
+          tableBody3+='<tr>';
+          for(var l = 0; l < columns.length; l++) {
+            tableBody3+='<td>'+data[k][columns[l]]+'</td>';
+          }
+          tableBody3+='</tr>';
+        case 'Riverdale Park':
+          tableBody4+='<tr>';
+          for(var l = 0; l < columns.length; l++) {
+            tableBody4+='<td>'+data[k][columns[l]]+'</td>';
+          }
+          tableBody4+='</tr>';
+        case "Prince George's County":
+          tableBody5+='<tr>';
+          for(var l = 0; l < columns.length; l++) {
+            tableBody5+='<td>'+data[k][columns[l]]+'</td>';
+          }
+          tableBody5+='</tr>';
       }
+      
     
     //tableBody.replace('<td>'+data[k][l]+'</td>','');
 
-    tableBody+='</tr>';
+    
     }
+
     document.getElementById("tableH").innerHTML = tableHead;
-    document.getElementById("tableB").innerHTML = tableBody;
+    document.getElementById("tableB1").innerHTML = tableBody1;
+    document.getElementById("tableB2").innerHTML = tableBody2;
+    document.getElementById("tableB3").innerHTML = tableBody3;
+    document.getElementById("tableB4").innerHTML = tableBody4;
+    document.getElementById("tableB5").innerHTML = tableBody5;
 }
 
   window.addEventListener('DOMContentLoaded', init)
