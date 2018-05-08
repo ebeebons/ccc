@@ -35,3 +35,8 @@ a {
 a:hover {
   color:#212b31;
 }
+
+.btn {
+    border: 2px solid black;
+    border-radius: 5px;
+}
