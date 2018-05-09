@@ -15,57 +15,75 @@
 </head>
 <body>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class="head-s">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <h1>Campus Community Connections</h1>
-          <h2> Explore projects in your community, or request to submit a new one! </h2>
-        </div>
-        <div class="col-md-2">
-          <a class="btn btn-default" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
-        </div>
-        </div>
+      <div class="col-md-1">
+        <img src="logoweb.png" alt="logo">
+      </div>
+      <div class="col-md-9"></div>
+      <div class="col-md-2">
+        <a class="btn btn-default" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
+      </div>
     </div>
+    <div class="row">
+          <div class="col-md-8">
+            <h1>Campus Community Connections</h1>
+          
+          </div>
+        <div class="col-md-4"></div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Engage with projects in your community or propose a new one!</h3>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+    
 
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <input id="CP" type="button" value="College Park" onclick="buttonFilter('College Park');" />
-        <input id="HV" type="button" value="Hyattsville" onclick="buttonFilter('Hyattsville');" />
-        <input id="RP" type="button" value="Riverdale Park" onclick="buttonFilter('Riverdale Park');" />
-        <input id="UP" type="button" value="University Park" onclick="buttonFilter('University Park');" />
-        <input id="PG" type="button" value="Prince George's County" onclick="buttonFilter('Prince George\'s County');" />
-        <form>
-          <div class="form-group">
-
-            <label for="searchBar">Filter projects by area, category, or name</label>
-            <input id="myInput" type="text" onkeyup="filterTable()" placeholder="Search">
-          </div>
-        </form>
+      
+      <div class="col-md-10">
+            <input id="myInput" type="text" onkeyup="filterTable()" placeholder="Search by keyword or community...">
       </div>
       <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+          <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('College Park');" />
+      </div>
+      <div class="col-md-2">
+          <input id="HV" class="btn" type="button" value="Hyattsville" onclick="buttonFilter('Hyattsville');" />
+      </div>
+      <div class="col-md-2">
+          <input id="RP" class="btn" type="button" value="Riverdale Park" onclick="buttonFilter('Riverdale Park');" />
+      </div>
+      <div class="col-md-2">
+          <input id="UP" class="btn" type="button" value="University Park" onclick="buttonFilter('University Park');" />
+      </div>
+      <div class="col-md-2">
+          <input id="PG" class="btn" type="button" value="PG County" onclick="buttonFilter('Prince George\'s County');" />
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+      
   </div>
-</div>
+
   <div class="row">
-    <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <h1 class="text-center">Project List</h1>
+      <div class="col-md-4">
+        <h2>Project List</h2>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-8"></div>
   </div>
 <div class="row">
     <div id="org_table">
-        <table id="table" class="col-md-8">
-            <thead id="tableH">
-
-            </thead>
+      <table id="table" class="col-md-12">
             <tbody id="tableB">
 
             </tbody>
             
-        </table>
+      </table>
     </div>
 </div>
 </div>
@@ -88,9 +106,6 @@
 
     var columns = ['name', 'category', 'municipality'];
 
-    for (var i = 0; i < columns.length; i++) {
-      tableHead+='<th>'+columns[i]+'</th>';
-    }
     //tableHead.replace('<th>'+i+'</th>','');
     tableHead+='</tr>';
 
@@ -109,9 +124,6 @@
     //tableBody.replace('<td>'+data[k][l]+'</td>','');
 
 
-    
-
-    document.getElementById("tableH").innerHTML = tableHead;
     document.getElementById("tableB").innerHTML = tableBody;
 }
 
@@ -145,7 +157,7 @@ function buttonFilter(area) {
 }
 $(function() {
     $("td[colspan=3]").find("p").hide();
-    $("table").click(function(event) {
+    $("tbody").click(function(event) {
         event.stopPropagation();
         var $target = $(event.target);
         if ( $target.closest("td").attr("colspan") > 1 ) {
