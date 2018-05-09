@@ -18,11 +18,11 @@
   <div class="container">
     <div class="head-s">
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-xs-1">
         <img src="logoweb.png" id="logo" alt="logo">
       </div>
-      <div class="col-md-9"></div>
-      <div class="col-md-2">
+      <div class="col-xs-9"></div>
+      <div class="col-xs-2">
         <a class="btn btn-default" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
       </div>
     </div>
@@ -104,19 +104,14 @@
     var tableBody = '';
     var tableHead = '<tr>;';
 
-    var columns = ['name', 'category', 'municipality'];
-
     //tableHead.replace('<th>'+i+'</th>','');
     tableHead+='</tr>';
 
     for (var k =0; k< data.length; k++){
       tableBody+='<tr><td>+</td>';
+      tableBody+='<td class="nameCell">'+data[k]['name']+'</td>';
 
-      for(var l = 0; l < columns.length; l++) {
-        tableBody+='<td>'+data[k][columns[l]]+'</td>';
-      }
-
-      tableBody+='</tr><tr><td colspan="3"><p>' +data[k]['description']+ '</p></td></tr>';
+      tableBody+='</tr><tr><td colspan="3"><p>' +data[k]['description']+ '<div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn btn-default" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></p></td></tr>';
 
       }
 
