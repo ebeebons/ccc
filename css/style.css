@@ -1,7 +1,15 @@
 input[type=text] {
     width: 100%;
 }
-
+.nameRow {
+  cursor:pointer;
+}
+.nameRow:hover { 
+    background-color: yellow;
+}
+.description {
+  display:none;
+}
 .head-s {
   background-color: #878787;
 }

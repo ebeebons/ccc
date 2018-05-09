@@ -12,6 +12,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <title> Campus Community Connections </title>
+  <script type="text/javascript">
+function show_hide_row(row)
+{
+ $("#"+row).toggle(1000);
+}
+</script>
 </head>
 <body>
 
@@ -97,29 +103,22 @@
                      callback: showInfo,
                      simpleSheet: true } )
   }
-function toggle() {
-    var x = document.getElementById("clack");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
+
   function showInfo(data, tabletop) {
     alert('Successfully processed!')
     console.log(data[0]);
     var tableBody = '';
-    var tableHead = '<tr>;';
+    //var tableHead = '<tr>;';
 
     //tableHead.replace('<th>'+i+'</th>','');
-    tableHead+='</tr>';
-
+    //tableHead+='</tr>';
+    var ll = 0;
     for (var k =0; k< data.length; k++){
-      tableBody+='<tr><td>+</td>';
-      tableBody+='<td class="nameCell">'+'<a onclick="toggle()">'+data[k]['name']+'</a>';
+      tableBody+='<tr onclick="show_hide_row(\'description'+ll+'\');" class="nameRow"><td>+</td>';
+      tableBody+='<td class="nameCell">'+data[k]['name']+'</td>';
 
-      tableBody+='<div id="clack"><p>' +data[k]['description']+ '</p><div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn btn-default" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></div></td></tr>';
-
+      tableBody+='</tr><tr id=\"description' + ll + '\" class=\"description\"><td colspan="3">' +data[k]['description']+ '<div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn btn-default" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
+      ll++;
       }
 
 
