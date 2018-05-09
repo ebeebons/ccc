@@ -10,7 +10,7 @@ input[type=text] {
   cursor:pointer;
 
 }
-.nameRow:hover { 
+.nameRow:hover, .nameRow:hover + .description { 
     background-color: #f5f5f5;
 }
 .tags {
@@ -23,7 +23,7 @@ input[type=text] {
   display:none;
 }
 .desCell {
-  margin-left: 20px;
+  padding-left: 50px;
 }
 .head-s {
   background-color: #FFF6EE;
@@ -40,6 +40,7 @@ input[type=text] {
   border-top: 1px solid #ddd;
   padding-bottom:20px;
   padding-top:20px;
+  padding-left: 30px;
   font-size: 125%;
 
 }
@@ -102,6 +103,7 @@ a:hover {
     
 }
 .plus {
+  border-top: 1px solid #ddd;
   font-size: 200%;
 }
 
