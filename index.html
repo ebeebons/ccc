@@ -10,6 +10,8 @@
   crossorigin="anonymous"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,800" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <title> Campus Community Connections </title>
   <script type="text/javascript">
@@ -29,12 +31,12 @@ function show_hide_row(row)
       </div>
       <div class="col-xs-9"></div>
       <div class="col-xs-2">
-        <a class="btn btn-default" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
+        <a class="btn btn-default" id="top-button" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
       </div>
     </div>
     <div class="row">
           <div class="col-md-8">
-            <h1>Campus Community Connections</h1>
+            <h1>Campus Community Connection</h1>
           
           </div>
         <div class="col-md-4"></div>
@@ -42,7 +44,7 @@ function show_hide_row(row)
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h3>Engage with projects in your community or propose a new one!</h3>
+        <h2>Engage with projects in your community or propose a new one!</h2>
       </div>
       <div class="col-md-6"></div>
     </div>
@@ -55,7 +57,7 @@ function show_hide_row(row)
       </div>
       <div class="col-md-2"></div>
     </div>
-    <div class="row">
+    <div class="row" id="filter-button">
       <div class="col-md-2">
           <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('Col');" />
       </div>
@@ -78,7 +80,7 @@ function show_hide_row(row)
 
   <div class="row">
       <div class="col-md-4">
-        <h2>Project List</h2>
+        <h3>Project List</h3>
       </div>
       <div class="col-md-8"></div>
   </div>
