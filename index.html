@@ -51,25 +51,25 @@ function show_hide_row(row)
     <div class="row">
       
       <div class="col-md-10">
-            <input id="myInput" type="text" onkeyup="filterTable()" placeholder="Search by keyword or community...">
+            <input id="myInput" type="text" onkeyup="filterTable()" placeholder="Search by keyword...">
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-2">
-          <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('College Park');" />
+          <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('Col');" />
       </div>
       <div class="col-md-2">
-          <input id="HV" class="btn" type="button" value="Hyattsville" onclick="buttonFilter('Hyattsville');" />
+          <input id="HV" class="btn" type="button" value="Hyattsville" onclick="buttonFilter('Hya');" />
       </div>
       <div class="col-md-2">
-          <input id="RP" class="btn" type="button" value="Riverdale Park" onclick="buttonFilter('Riverdale Park');" />
+          <input id="RP" class="btn" type="button" value="Riverdale Park" onclick="buttonFilter('Riv');" />
       </div>
       <div class="col-md-2">
-          <input id="UP" class="btn" type="button" value="University Park" onclick="buttonFilter('University Park');" />
+          <input id="UP" class="btn" type="button" value="University Park" onclick="buttonFilter('Uni');" />
       </div>
       <div class="col-md-2">
-          <input id="PG" class="btn" type="button" value="PG County" onclick="buttonFilter('Prince George\'s County');" />
+          <input id="PG" class="btn" type="button" value="PG County" onclick="buttonFilter('Pri');" />
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -114,10 +114,10 @@ function show_hide_row(row)
     //tableHead+='</tr>';
     var ll = 0;
     for (var k =0; k< data.length; k++){
-      tableBody+='<tr onclick="show_hide_row(\'description'+ll+'\');" class="nameRow"><td>+</td>';
+      tableBody+='<tr onclick="show_hide_row(\'description'+ll+'\');" class="nameRow '+data[k]['municipality'].substring(0,3)+'">';
       tableBody+='<td class="nameCell">'+data[k]['name']+'</td>';
 
-      tableBody+='</tr><tr id=\"description' + ll + '\" class=\"description\"><td colspan="3">' +data[k]['description']+ '<div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn btn-default" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
+      tableBody+='</tr><tr id=\"description' + ll + '\" class=\"description\"><td colspan="3">' +data[k]['description']+ '<div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
       ll++;
       }
 
@@ -147,9 +147,10 @@ function filterTable(event) {
 function buttonFilter(area) {
     var trable = document.getElementById("tableB");
     var tr = trable.getElementsByTagName("tr");
+    var rows = trable.getElementsByClassName(area);
     for (var i = 0; i < tr.length; i++) {
       //console.log(tr.textContent);
-        if (tr[i].textContent.indexOf(area) > -1) {
+        if (tr[i].classList.contains(area)) {
             tr[i].style.display = "";
         } else {
             tr[i].style.display = "none";
