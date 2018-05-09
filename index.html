@@ -97,7 +97,14 @@
                      callback: showInfo,
                      simpleSheet: true } )
   }
-
+function toggle() {
+    var x = document.getElementById("clack");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
   function showInfo(data, tabletop) {
     alert('Successfully processed!')
     console.log(data[0]);
@@ -109,9 +116,9 @@
 
     for (var k =0; k< data.length; k++){
       tableBody+='<tr><td>+</td>';
-      tableBody+='<td class="nameCell">'+data[k]['name']+'</td>';
+      tableBody+='<td class="nameCell">'+'<a onclick="toggle()">'+data[k]['name']+'</a>';
 
-      tableBody+='</tr><tr><td colspan="3"><p>' +data[k]['description']+ '<div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn btn-default" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></p></td></tr>';
+      tableBody+='<div id="clack"><p>' +data[k]['description']+ '</p><div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn btn-default" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></div></td></tr>';
 
       }
 
@@ -150,23 +157,7 @@ function buttonFilter(area) {
         }
     }
 }
-$(function() {
-    $("td[colspan=3]").find("p").hide();
-    $("tbody").click(function(event) {
-        event.stopPropagation();
-        var $target = $(event.target);
-        if ( $target.closest("td").attr("colspan") > 1 ) {
-            $target.slideUp();
-            $target.closest("tr").prev().find("td:first").html("+");
-        } else {
-            $target.closest("tr").next().find("p").slideToggle();
-            if ($target.closest("tr").find("td:first").html() == "+")
-                $target.closest("tr").find("td:first").html("-");
-            else
-                $target.closest("tr").find("td:first").html("+");                
-        }                    
-    });
-});
+
 document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
 </script>
 </html>
