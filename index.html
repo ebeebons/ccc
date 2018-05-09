@@ -119,7 +119,7 @@ function show_hide_row(row)
       tableBody+='<tr onclick="show_hide_row(\'description'+ll+'\');" class="nameRow '+data[k]['municipality'].substring(0,3)+'">';
       tableBody+='<td class="nameCell">'+data[k]['name']+'</td>';
 
-      tableBody+='</tr><tr id=\"description' + ll + '\" class=\"description\"><td colspan="3">' +data[k]['description']+ '<div class=\"row\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
+      tableBody+='</tr><tr id=\"description' + ll + '\" class=\"description\"><td colspan="3">' +data[k]['description']+ '<div class=\"row tags\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
       ll++;
       }
 
