@@ -5,7 +5,9 @@ input[type=text] {
 .head-s {
   background-color: #878787;
 }
-
+#logo {
+  width:100%;
+}
 body {
   font-family: "Lucida Console", Monospace;
   font-size: 16px;
