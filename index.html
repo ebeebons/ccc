@@ -2,27 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport"
-     content="width=device-width, initial-scale=1, user-scalable=yes">
-  <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
+  <!-- ensure things scale with screen size -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <!-- import jquery and bootstrap. bootstrap 3 is only compatible with jquery 2, both of which are not the latest versions. -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- import tabletopJS, enables conversion of spreadsheet to json -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+  <!-- import the font used -->
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,800" rel="stylesheet">
-
+  <!-- import the css stylesheet written for this webpage -->
   <link rel="stylesheet" href="css/style.css">
   <title> Campus Community Connections </title>
+  <!-- script which is run everytime a row is clicked, to show or hide the relevant information -->
   <script type="text/javascript">
     function show_hide_row(row) {
       var $target = $(event.target);
       $("#"+row).slideToggle(1000);
+      /*find closest + sign, this if statement toggles = and -*/
       if ($target.closest("tr").find("td:first").html() == "+")
                 $target.closest("tr").find("td:first").html("-");
             else
                 $target.closest("tr").find("td:first").html("+"); 
     }
+    /*this is called when the child row is clicked, to hide it. it is still not entirely complete, it must also toggle the +- sign.*/
     function show_hide_row1(row) {
       var $target = $(event.target);
       $("#"+row).slideToggle(1000);
@@ -30,83 +34,81 @@
   </script>
 </head>
 <body>
-
-
     <div class="head-s">
-    <div class="container">
-    <div class="row">
-      <div class="col-xs-1">
-        <img src="logoweb.png" id="logo" alt="logo">
-      </div>
-      <div class="col-xs-8"></div>
-      <div class="col-xs-3">
-        <a class="btn btn-default" id="top-button" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
-      </div>
-    </div>
-    <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-1">
+          <!-- add logo -->
+            <img src="logoweb.png" id="logo" alt="logo">
+          </div>
+          <div class="col-xs-8"></div>
+          <div class="col-xs-3">
+          <!-- project proposal button -->
+          <a class="btn btn-default" id="top-button" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-8">
             <h1>Campus Community Connection</h1>
-          
           </div>
-        <div class="col-md-4"></div>
-
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h2>Engage with projects in your community or propose a new one!</h2>
-      </div>
-      <div class="col-md-6"></div>
-    </div>
-    
-
-    <div class="row">
-      
-      <div class="col-md-10">
+          <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Engage with projects in your community or propose a new one!</h2>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <!--search input field: call filterTable() every time a key is pressed in this searchbox -->
             <input id="myInput" type="text" onkeyup="filterTable()" placeholder=" Search by keyword...">
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <!-- row containing filter buttons, each button called the buttonFilter() function with a municipality as an argument -->
+        <div class="row" id="filter-button">
+          <div class="col-md-2">
+            <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('Col');" />
+          </div>
+          <div class="col-md-2">
+            <input id="HV" class="btn" type="button" value="Hyattsville" onclick="buttonFilter('Hya');" />
+          </div>
+          <div class="col-md-2">
+            <input id="RP" class="btn" type="button" value="Riverdale Park" onclick="buttonFilter('Riv');" />
+          </div>
+          <div class="col-md-2">
+            <input id="UP" class="btn" type="button" value="University Park" onclick="buttonFilter('Uni');" />
+          </div>
+          <div class="col-md-2">
+            <input id="PG" class="btn" type="button" value="PG County" onclick="buttonFilter('Pri');" />
+          </div>
+          <div class="col-md-2"></div>
+        </div>
       </div>
-      <div class="col-md-2"></div>
     </div>
-    <div class="row" id="filter-button">
-      <div class="col-md-2">
-          <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('Col');" />
-      </div>
-      <div class="col-md-2">
-          <input id="HV" class="btn" type="button" value="Hyattsville" onclick="buttonFilter('Hya');" />
-      </div>
-      <div class="col-md-2">
-          <input id="RP" class="btn" type="button" value="Riverdale Park" onclick="buttonFilter('Riv');" />
-      </div>
-      <div class="col-md-2">
-          <input id="UP" class="btn" type="button" value="University Park" onclick="buttonFilter('Uni');" />
-      </div>
-      <div class="col-md-2">
-          <input id="PG" class="btn" type="button" value="PG County" onclick="buttonFilter('Pri');" />
-      </div>
-      <div class="col-md-2"></div>
-    </div>
-      </div>
-  </div>
-  <div class="container">
-  <div class="row">
+    <div class="container">
+    <div class="row">
       <div class="col-md-4">
         <h3>Project List</h3>
       </div>
       <div class="col-md-8"></div>
-  </div>
-<div class="row">
+    </div>
+    <div class="row">
+      <!-- table which is filled when the init and showInfo() functions run -->
       <table id="table" class="col-md-12">
-            <tbody id="tableB">
+        <tbody id="tableB">
 
-            </tbody>
+        </tbody>
             
       </table>
-</div>
-</div>
+    </div>
+  </div>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-<script type='text/javascript'>
+  <!-- scripts which populate JSON obj with spreadsheet contents -->
+  <script type='text/javascript'>
   var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/12TaWxdp5gRuULZsBL2eGdM01NpohOHqyKRv9-HGL2ZU/edit?usp=sharing';
-
+  /*init tabletop with the google sheet url*/
   function init() {
     Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/12TaWxdp5gRuULZsBL2eGdM01NpohOHqyKRv9-HGL2ZU/edit?usp=sharing',
                      callback: showInfo,
@@ -114,14 +116,9 @@
   }
 
   function showInfo(data, tabletop) {
-    alert('Successfully processed!')
-    console.log(data[0]);
     var tableBody = '';
-    //var tableHead = '<tr>;';
-
-    //tableHead.replace('<th>'+i+'</th>','');
-    //tableHead+='</tr>';
     var ll = 0;
+    /*for loop appends to a string using data[], which is then assigned to the table mentioned above */
     for (var k =0; k< data.length; k++){
       tableBody+='<tr onclick="show_hide_row(\'description'+ll+'\');" class="nameRow '+data[k]['municipality'].substring(0,3)+'">';
       tableBody+='<td class=\"plus\">+</td><td class="nameCell">'+data[k]['name']+'</td>';
@@ -129,31 +126,31 @@
       tableBody+='</tr><tr onclick="show_hide_row1(\'description'+ll+'\');" id=\"description' + ll + '\" class=\"description\"><td class=\"desCell\" colspan="3"><p>' +data[k]['description']+ '</p><div class=\"row tags\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
       ll++;
       }
-
-
-    //tableBody.replace('<td>'+data[k][l]+'</td>','');
-
-
     document.getElementById("tableB").innerHTML = tableBody;
-}
+  }
 
   window.addEventListener('DOMContentLoaded', init)
-
-function filterTable(event) {
+  /*Function which takes input from the search bar to filter the list*/
+  function filterTable(event) {
+    /*pulls input from myInput, converts to uppercase (to avoid case sensitivity)*/
     var input = document.getElementById("myInput");
     var filter = input.value.toUpperCase();
     var trable = document.getElementById("tableB");
+    /*make tr object containing tr elements in the tableB*/
     var tr = trable.getElementsByTagName("tr");
+    /*loop through the tr object*/
     for (var i = 0; i < tr.length; i++) {
-      //console.log(tr.textContent);
+        /*convert the tr elements to uppercase to avoid case sensitivity*/
+        /*if the search matches, change css display to "", else change it to none*/
         if (tr[i].textContent.toUpperCase().indexOf(filter) > -1) {
             tr[i].style.display = "";
         } else {
             tr[i].style.display = "none";
         }
     }
-}
-function buttonFilter(area) {
+  }
+  /*very similar function to above, but only called on filter button press. works the exact same way.*/
+  function buttonFilter(area) {
     var trable = document.getElementById("tableB");
     var tr = trable.getElementsByTagName("tr");
     var rows = trable.getElementsByClassName(area);
@@ -165,8 +162,9 @@ function buttonFilter(area) {
             tr[i].style.display = "none";
         }
     }
-}
+  }
 
-document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
-</script>
+  document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
+  </script>
+</body>
 </html>
