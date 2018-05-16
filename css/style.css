@@ -6,14 +6,13 @@ input[type=text] {
     border-style:solid;
     border-width:1px;
 }
-.nameRow {
+.projectEntry {
   cursor:pointer;
-
 }
-.nameRow:hover, .nameRow:hover + .description { 
+.projectEntry:hover, .projectEntry:hover { 
     background-color: #f5f5f5;
 }
-.tags {
+.locTags {
   color: #817f7f;
   line-height: 40px;
   margin-top: 30px;
@@ -72,18 +71,17 @@ h2{
   color: #4A4A4A;
   margin-bottom: 50px;
 } 
-.container {
-
-}
-#tableB {
-
-}
 h3 {
   font-size: 250%;
   margin-bottom: 35px;
 }
-
-#filter-button{
+.plus:after {
+    content:"+";
+}
+.minus:after {
+    content:"-";
+}
+#filterButtons{
   margin-top: 20px;
 }
 
@@ -95,27 +93,27 @@ a:hover {
 }
 
 .btn,.btn:hover {
-    border: 2px solid #e03a3e;
-    border-radius: 5px;
+    border: 1px solid #FFF6EE;
+    border-radius: 7px;
     width: 100%;
     color: #fff;
     background-color: #e03a3e;
     
 }
-.plus {
+.toggy {
   border-top: 1px solid #ddd;
   font-size: 200%;
 }
 
-#top-button {
+#topButton {
     border: 2px solid #E03A3E;
     border-radius: 5px;
-    min-width: 150px;
+    max-width: 250px;
     background-color: transparent; 
     color: #E03A3E;
 }
 
-#top-button:hover{
+#topButton:hover{
   color: #fff;
   background-color:#e03a3e;
   transition: 0.4s;

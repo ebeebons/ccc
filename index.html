@@ -17,19 +17,18 @@
   <title> Campus Community Connections </title>
   <!-- script which is run everytime a row is clicked, to show or hide the relevant information -->
   <script type="text/javascript">
-    function show_hide_row(row) {
+    function show_hide_row(row, togg) {
       var $target = $(event.target);
-      $("#"+row).slideToggle(1000);
-      /*find closest + sign, this if statement toggles = and -*/
-      if ($target.closest("tr").find("td:first").html() == "+")
-                $target.closest("tr").find("td:first").html("-");
-            else
-                $target.closest("tr").find("td:first").html("+"); 
-    }
-    /*this is called when the child row is clicked, to hide it. it is still not entirely complete, it must also toggle the +- sign.*/
-    function show_hide_row1(row) {
-      var $target = $(event.target);
-      $("#"+row).slideToggle(1000);
+      $("#"+row).slideToggle(600);
+      /*checks if its a + or - by class, and toggles*/
+      if ($('#'+togg).hasClass("plus")) {
+        $('#'+togg).addClass("minus");
+        $('#'+togg).removeClass("plus");
+      }
+      else {
+        $('#'+togg).addClass("plus");
+        $('#'+togg).removeClass("minus");
+      }
     }
   </script>
 </head>
@@ -41,10 +40,10 @@
           <!-- add logo -->
             <img src="logoweb.png" id="logo" alt="logo">
           </div>
-          <div class="col-xs-8"></div>
-          <div class="col-xs-3">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-6">
           <!-- project proposal button -->
-          <a class="btn btn-default" id="top-button" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
+          <a class="btn btn-default pull-right" id="topButton" href='https://goo.gl/forms/CGionRn90ootRY4I2' target="_blank">Propose New Project</a>
           </div>
         </div>
         <div class="row">
@@ -67,7 +66,7 @@
           <div class="col-md-2"></div>
         </div>
         <!-- row containing filter buttons, each button called the buttonFilter() function with a municipality as an argument -->
-        <div class="row" id="filter-button">
+        <div class="row" id="filterButtons">
           <div class="col-md-2">
             <input id="CP" class="btn" type="button" value="College Park" onclick="buttonFilter('Col');" />
           </div>
@@ -96,10 +95,8 @@
     </div>
     <div class="row">
       <!-- table which is filled when the init and showInfo() functions run -->
-      <table id="table" class="col-md-12">
-        <tbody id="tableB">
+      <table id="tableO" class="col-md-12">
 
-        </tbody>
             
       </table>
     </div>
@@ -120,13 +117,13 @@
     var ll = 0;
     /*for loop appends to a string using data[], which is then assigned to the table mentioned above */
     for (var k =0; k< data.length; k++){
-      tableBody+='<tr onclick="show_hide_row(\'description'+ll+'\');" class="nameRow '+data[k]['municipality'].substring(0,3)+'">';
-      tableBody+='<td class=\"plus\">+</td><td class="nameCell">'+data[k]['name']+'</td>';
+      tableBody+='<tbody class="projectEntry"><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');" class="nameRow '+data[k]['municipality'].substring(0,3)+'">';
+      tableBody+='<td class=\"toggy plus\" id=\"togg' + ll + '\"></td><td class="nameCell">'+data[k]['name']+'</td>';
 
-      tableBody+='</tr><tr onclick="show_hide_row1(\'description'+ll+'\');" id=\"description' + ll + '\" class=\"description\"><td class=\"desCell\" colspan="3"><p>' +data[k]['description']+ '</p><div class=\"row tags\"><div class=\"col-sm-2\"><span class=\"loc\">'+data[k]['municipality']+'</span></div><div class=\"col-sm-8\"></div><div class=\"col-sm-2\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></td></tr>';
+      tableBody+='</tr><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');"><td class=\"desCell\" colspan="3"><div class=\"description\" id=\"description' + ll + '\"><p>' +data[k]['description']+ '</p><div class=\"row locTags\"><div class=\"col-sm-3\">'+data[k]['municipality']+'</div><div class=\"col-sm-6\"></div><div class=\"col-sm-3\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></div></td></tr></tbody>';
       ll++;
       }
-    document.getElementById("tableB").innerHTML = tableBody;
+    document.getElementById("tableO").innerHTML = tableBody;
   }
 
   window.addEventListener('DOMContentLoaded', init)
@@ -135,8 +132,8 @@
     /*pulls input from myInput, converts to uppercase (to avoid case sensitivity)*/
     var input = document.getElementById("myInput");
     var filter = input.value.toUpperCase();
-    var trable = document.getElementById("tableB");
-    /*make tr object containing tr elements in the tableB*/
+    var trable = document.getElementById("tableO");
+    /*make tr object containing tr elements in the tableO*/
     var tr = trable.getElementsByTagName("tr");
     /*loop through the tr object*/
     for (var i = 0; i < tr.length; i++) {
@@ -151,7 +148,7 @@
   }
   /*very similar function to above, but only called on filter button press. works the exact same way.*/
   function buttonFilter(area) {
-    var trable = document.getElementById("tableB");
+    var trable = document.getElementById("tableO");
     var tr = trable.getElementsByTagName("tr");
     var rows = trable.getElementsByClassName(area);
     for (var i = 0; i < tr.length; i++) {
