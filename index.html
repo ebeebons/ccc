@@ -117,7 +117,7 @@
     var ll = 0;
     /*for loop appends to a string using data[], which is then assigned to the table mentioned above */
     for (var k =0; k< data.length; k++){
-      tableBody+='<tbody class="projectEntry"><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');" class="nameRow '+data[k]['municipality'].substring(0,3)+'">';
+      tableBody+='<tbody class="projectEntry '+data[k]['municipality'].substring(0,3)+'"><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');" class="nameRow">';
       tableBody+='<td class=\"toggy plus\" id=\"togg' + ll + '\"></td><td class="nameCell">'+data[k]['name']+'</td>';
 
       tableBody+='</tr><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');"><td class=\"desCell\" colspan="3"><div class=\"description\" id=\"description' + ll + '\"><p>' +data[k]['description']+ '</p><div class=\"row locTags\"><div class=\"col-sm-3\">'+data[k]['municipality']+'</div><div class=\"col-sm-6\"></div><div class=\"col-sm-3\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></div></td></tr></tbody>';
@@ -133,30 +133,30 @@
     var input = document.getElementById("myInput");
     var filter = input.value.toUpperCase();
     var trable = document.getElementById("tableO");
-    /*make tr object containing tr elements in the tableO*/
-    var tr = trable.getElementsByTagName("tr");
+    /*make tr object containing tbody elements in the tableO*/
+    var tbody = trable.getElementsByTagName("tbody");
     /*loop through the tr object*/
-    for (var i = 0; i < tr.length; i++) {
-        /*convert the tr elements to uppercase to avoid case sensitivity*/
+    for (var i = 0; i < tbody.length; i++) {
+        /*convert the tbody elements to uppercase to avoid case sensitivity*/
         /*if the search matches, change css display to "", else change it to none*/
-        if (tr[i].textContent.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
+        if (tbody[i].textContent.toUpperCase().indexOf(filter) > -1) {
+            tbody[i].style.display = "";
         } else {
-            tr[i].style.display = "none";
+            tbody[i].style.display = "none";
         }
     }
   }
   /*very similar function to above, but only called on filter button press. works the exact same way.*/
   function buttonFilter(area) {
     var trable = document.getElementById("tableO");
-    var tr = trable.getElementsByTagName("tr");
-    var rows = trable.getElementsByClassName(area);
-    for (var i = 0; i < tr.length; i++) {
+    var tbody = trable.getElementsByTagName("tbody");
+    //var rows = trable.getElementsByClassName(area);
+    for (var i = 0; i < tbody.length; i++) {
       //console.log(tr.textContent);
-        if (tr[i].classList.contains(area)) {
-            tr[i].style.display = "";
+        if (tbody[i].classList.contains(area)) {
+            tbody[i].style.display = "";
         } else {
-            tr[i].style.display = "none";
+            tbody[i].style.display = "none";
         }
     }
   }
