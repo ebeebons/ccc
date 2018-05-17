@@ -97,7 +97,7 @@
       <!-- table which is filled when the init and showInfo() functions run -->
       <table id="tableO" class="col-md-12">
 
-            
+
       </table>
     </div>
   </div>
@@ -120,7 +120,7 @@
       tableBody+='<tbody class="projectEntry '+data[k]['municipality'].substring(0,3)+'"><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');" class="nameRow">';
       tableBody+='<td class=\"toggy plus\" id=\"togg' + ll + '\"></td><td class="nameCell">'+data[k]['name']+'</td>';
 
-      tableBody+='</tr><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');"><td class=\"desCell\" colspan="3"><div class=\"description\" id=\"description' + ll + '\"><p>' +data[k]['description']+ '</p><div class=\"row locTags\"><div class=\"col-sm-3\">'+data[k]['municipality']+'</div><div class=\"col-sm-6\"></div><div class=\"col-sm-3\"><a class="btn" href=\'https://goo.gl/forms/CGionRn90ootRY4I2\' target="_blank">Get Involved</a></div></div></div></td></tr></tbody>';
+      tableBody+='</tr><tr onclick="show_hide_row(\'description'+ll+'\', \'togg'+ll+'\');"><td class=\"desCell\" colspan="3"><div class=\"description\" id=\"description' + ll + '\"><p>' +data[k]['description']+ '</p><div class=\"row locTags\"><div class=\"col-sm-3\">'+data[k]['municipality']+'</div><div class=\"col-sm-6\"></div><div class=\"col-sm-3\"><a class="btn" href=\'https://goo.gl/forms/GkEar6u2BcBNltO72' target="_blank">Get Involved</a></div></div></div></td></tr></tbody>';
       ll++;
       }
     document.getElementById("tableO").innerHTML = tableBody;
